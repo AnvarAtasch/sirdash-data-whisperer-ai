@@ -14,7 +14,7 @@ const svgFiles = [
   'sirdash-logo.svg'
 ];
 
-const imagesDir = path.join(__dirname, 'public', 'images');
+const imagesDir = path.join(__dirname, '..', 'public', 'images');
 
 async function convertSvgToPng() {
   for (const svgFile of svgFiles) {
@@ -23,19 +23,23 @@ async function convertSvgToPng() {
     const pngPath = path.join(imagesDir, pngFile);
     
     try {
-      // Create PNG version with 512px width (adjust as needed)
-      await sharp(svgPath)
-        .resize(512)
-        .png()
-        .toFile(pngPath);
-      
-      // Create a larger version for high-resolution displays
-      await sharp(svgPath)
-        .resize(1024)
-        .png()
-        .toFile(path.join(imagesDir, svgFile.replace('.svg', '@2x.png')));
-      
-      console.log(`Converted ${svgFile} to ${pngFile} and ${pngFile.replace('.png', '@2x.png')}`);
+      if (fs.existsSync(svgPath)) {
+        // Create PNG version with 512px width
+        await sharp(svgPath)
+          .resize(512)
+          .png()
+          .toFile(pngPath);
+        
+        // Create a larger version for high-resolution displays
+        await sharp(svgPath)
+          .resize(1024)
+          .png()
+          .toFile(path.join(imagesDir, svgFile.replace('.svg', '@2x.png')));
+        
+        console.log(`Converted ${svgFile} to ${pngFile} and ${pngFile.replace('.png', '@2x.png')}`);
+      } else {
+        console.warn(`SVG file not found: ${svgPath}`);
+      }
     } catch (error) {
       console.error(`Error converting ${svgFile}:`, error);
     }

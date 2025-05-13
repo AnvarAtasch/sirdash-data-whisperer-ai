@@ -1,0 +1,29 @@
+<svg width="300" height="100" viewBox="0 0 300 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Circle with gradient -->
+  <circle cx="50" cy="50" r="40" fill="url(#paint0_linear)"/>
+  
+  <!-- S shape -->
+  <path d="M50 25C50 25 65 25 75 35C85 45 75 55 65 55H35C25 55 15 65 25 75C35 85 50 80 50 80" stroke="white" stroke-width="10" stroke-linecap="round"/>
+  
+  <!-- Bar chart elements -->
+  <rect x="30" y="80" width="10" height="15" fill="white"/>
+  <rect x="45" y="80" width="10" height="20" fill="white"/>
+  <rect x="60" y="80" width="10" height="17" fill="white"/>
+  
+  <!-- SirDash text -->
+  <path d="M120 55C120 47.5 125 42.5 132.5 42.5C138 42.5 142 45 143.5 49.5L139 51.5C138 48.5 135.5 47 132.5 47C127.5 47 124.5 50.5 124.5 55C124.5 59.5 127.5 63 132.5 63C135.5 63 138 61.5 139 58.5L143.5 60.5C142 65 138 67.5 132.5 67.5C125 67.5 120 62.5 120 55Z" fill="#1A202C"/>
+  <path d="M146 43H150V63.5H163V67H146V43Z" fill="#1A202C"/>
+  <path d="M166 43H170V55.5C170 60.5 172.5 63.5 177 63.5C181.5 63.5 184 60.5 184 55.5V43H188V55.5C188 62.5 183.5 67.5 177 67.5C170.5 67.5 166 62.5 166 55.5V43Z" fill="#1A202C"/>
+  <path d="M204 67H200V47H192.5V43H211.5V47H204V67Z" fill="#1A202C"/>
+  <path d="M214 55C214 47.5 219.5 42.5 227 42.5C234.5 42.5 240 47.5 240 55C240 62.5 234.5 67.5 227 67.5C219.5 67.5 214 62.5 214 55ZM235.5 55C235.5 49.5 232 46.5 227 46.5C222 46.5 218.5 49.5 218.5 55C218.5 60.5 222 63.5 227 63.5C232 63.5 235.5 60.5 235.5 55Z" fill="#1A202C"/>
+  <path d="M242.5 43H247L255 58L263 43H267.5V67H263.5V50L256.5 63H253.5L246.5 50V67H242.5V43Z" fill="#1A202C"/>
+  <path d="M272 43H276V63.5H289V67H272V43Z" fill="#1A202C"/>
+  
+  <!-- Gradient definition -->
+  <defs>
+    <linearGradient id="paint0_linear" x1="10" y1="10" x2="90" y2="90" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#D8A1D4"/>
+      <stop offset="1" stop-color="#8E7BB9"/>
+    </linearGradient>
+  </defs>
+</svg>

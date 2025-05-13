@@ -1,0 +1,21 @@
+<svg width="200" height="50" viewBox="0 0 200 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Circle with gradient -->
+  <circle cx="25" cy="25" r="20" fill="#B088C9"/>
+  
+  <!-- S shape -->
+  <path d="M25 15C25 15 35 15 40 20C45 25 40 30 35 30H15C10 30 5 35 10 40C15 45 25 42 25 42" stroke="white" stroke-width="4" stroke-linecap="round"/>
+  
+  <!-- Bar chart elements -->
+  <rect x="15" y="42" width="5" height="8" fill="white"/>
+  <rect x="22" y="42" width="5" height="8" fill="white"/>
+  <rect x="29" y="42" width="5" height="8" fill="white"/>
+  
+  <!-- SirDash text -->
+  <path d="M60 30C60 26 62.5 23 66.5 23C69.5 23 71.5 24.5 72.5 27L70 28C69.5 26.5 68 25.5 66.5 25.5C63.5 25.5 62 27.5 62 30C62 32.5 63.5 34.5 66.5 34.5C68 34.5 69.5 33.5 70 32L72.5 33C71.5 35.5 69.5 37 66.5 37C62.5 37 60 34 60 30Z" fill="#1A202C"/>
+  <path d="M74 23.5H76V33.5H82.5V36H74V23.5Z" fill="#1A202C"/>
+  <path d="M84 23.5H86V29.5C86 32 87.5 33.5 89.5 33.5C91.5 33.5 93 32 93 29.5V23.5H95V29.5C95 33 92.5 36 89.5 36C86.5 36 84 33 84 29.5V23.5Z" fill="#1A202C"/>
+  <path d="M103 36H101V25.5H97V23.5H107V25.5H103V36Z" fill="#1A202C"/>
+  <path d="M108 30C108 26 111 23 115 23C119 23 122 26 122 30C122 34 119 37 115 37C111 37 108 34 108 30ZM120 30C120 27 118 25.5 115 25.5C112 25.5 110 27 110 30C110 33 112 34.5 115 34.5C118 34.5 120 33 120 30Z" fill="#1A202C"/>
+  <path d="M123 23.5H125.5L129.5 31L133.5 23.5H136V36H134V26.5L130.5 33H128.5L125 26.5V36H123V23.5Z" fill="#1A202C"/>
+  <path d="M138 23.5H140V33.5H146.5V36H138V23.5Z" fill="#1A202C"/>
+</svg>

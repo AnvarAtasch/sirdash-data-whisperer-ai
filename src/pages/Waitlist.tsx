@@ -5,6 +5,27 @@ import Footer from '@/components/Footer';
 import { ArrowLeft } from "lucide-react";
 import { Link } from "react-router-dom";
 
+// Extend the Window interface for Brevo form properties
+declare global {
+  interface Window {
+    REQUIRED_CODE_ERROR_MESSAGE: string;
+    LOCALE: string;
+    EMAIL_INVALID_MESSAGE: string;
+    SMS_INVALID_MESSAGE: string;
+    REQUIRED_ERROR_MESSAGE: string;
+    GENERIC_INVALID_MESSAGE: string;
+    translation: {
+      common: {
+        selectedList: string;
+        selectedLists: string;
+        selectedOption: string;
+        selectedOptions: string;
+      };
+    };
+    AUTOHIDE: boolean;
+  }
+}
+
 const Waitlist = () => {
   useEffect(() => {
     // Add the Brevo form scripts and styles
@@ -147,12 +168,12 @@ const Waitlist = () => {
                       <div id="sib-container" className="sib-container--large sib-container--vertical" style={{textAlign: 'center', backgroundColor: 'rgba(255,255,255,1)', maxWidth: '540px', borderRadius: '3px', borderWidth: '1px', borderColor: '#C0CCD9', borderStyle: 'solid', direction: 'ltr'}}>
                         <form id="sib-form" method="POST" action="https://sibforms.com/serve/MUIFAEmiaVBmmLsTThaRwJwdM6mtV8UNVRJCbpyW-6mzA7gO1HJJ01T91TqYLlfWtz1smxLo6i5mumwSYDl_BNK7_jdx-VZQEs41A2VZm2-C16MXrDMuWaeV_wCg6yMBtZlSk3a_tnQgZyeOVu73J4PGgKWjwwxggFFxFy9v6RN6kTUeADJy4hlaegbz8z09AMyXi80wgp6BU2gh" data-type="subscription">
                           <div style={{padding: '8px 0'}}>
-                            <div className="sib-form-block" style={{fontSize: '32px', textAlign: 'left', fontWeight: '700', fontFamily: 'Helvetica, sans-serif', color: '#c229c8', backgroundColor: 'transparent', textAlign: 'left'}}>
+                            <div className="sib-form-block" style={{fontSize: '32px', fontWeight: '700', fontFamily: 'Helvetica, sans-serif', color: '#c229c8', backgroundColor: 'transparent', textAlign: 'left'}}>
                               <p>Join our waitinglist&nbsp;</p>
                             </div>
                           </div>
                           <div style={{padding: '8px 0'}}>
-                            <div className="sib-form-block" style={{fontSize: '16px', textAlign: 'left', fontFamily: 'Helvetica, sans-serif', color: '#3C4858', backgroundColor: 'transparent', textAlign: 'left'}}>
+                            <div className="sib-form-block" style={{fontSize: '16px', fontFamily: 'Helvetica, sans-serif', color: '#3C4858', backgroundColor: 'transparent', textAlign: 'left'}}>
                               <div className="sib-text-form-block">
                                 <p><br /></p>
                               </div>
@@ -162,16 +183,16 @@ const Waitlist = () => {
                             <div className="sib-input sib-form-block">
                               <div className="form__entry entry_block">
                                 <div className="form__label-row ">
-                                  <label className="entry__label" style={{fontWeight: '700', textAlign: 'left', fontSize: '16px', textAlign: 'left', fontWeight: '700', fontFamily: 'Helvetica, sans-serif', color: '#3c4858'}} htmlFor="EMAIL" data-required="*">Enter your email address to join our waiting list</label>
+                                  <label className="entry__label" style={{fontWeight: '700', fontSize: '16px', fontFamily: 'Helvetica, sans-serif', color: '#3c4858', textAlign: 'left'}} htmlFor="EMAIL" data-required="*">Enter your email address to join our waiting list</label>
 
                                   <div className="entry__field">
                                     <input className="input " type="text" id="EMAIL" name="EMAIL" autoComplete="off" placeholder="EMAIL" data-required="true" required />
                                   </div>
                                 </div>
 
-                                <label className="entry__error entry__error--primary" style={{fontSize: '16px', textAlign: 'left', fontFamily: 'Helvetica, sans-serif', color: '#661d1d', backgroundColor: '#ffeded', borderRadius: '3px', borderColor: '#ff4949'}}>
+                                <label className="entry__error entry__error--primary" style={{fontSize: '16px', fontFamily: 'Helvetica, sans-serif', color: '#661d1d', backgroundColor: '#ffeded', borderRadius: '3px', borderColor: '#ff4949', textAlign: 'left'}}>
                                 </label>
-                                <label className="entry__specification" style={{fontSize: '12px', textAlign: 'left', fontFamily: 'Helvetica, sans-serif', color: '#8390A4', textAlign: 'left'}}>
+                                <label className="entry__specification" style={{fontSize: '12px', fontFamily: 'Helvetica, sans-serif', color: '#8390A4', textAlign: 'left'}}>
                                   Provide your email address to subscribe. For e.g abc@xyz.com
                                 </label>
                               </div>
@@ -179,7 +200,7 @@ const Waitlist = () => {
                           </div>
                           <div style={{padding: '8px 0'}}>
                             <div className="sib-form-block" style={{textAlign: 'left'}}>
-                              <button className="sib-form-block__button sib-form-block__button-with-loader" style={{fontSize: '16px', textAlign: 'left', fontWeight: '700', fontFamily: 'Helvetica, sans-serif', color: '#FFFFFF', backgroundColor: '#cf15cf', borderRadius: '3px', borderWidth: '0px'}} form="sib-form" type="submit">
+                              <button className="sib-form-block__button sib-form-block__button-with-loader" style={{fontSize: '16px', fontWeight: '700', fontFamily: 'Helvetica, sans-serif', color: '#FFFFFF', backgroundColor: '#cf15cf', borderRadius: '3px', borderWidth: '0px', textAlign: 'left'}} form="sib-form" type="submit">
                                 <svg className="icon clickable__icon progress-indicator__icon sib-hide-loader-icon" viewBox="0 0 512 512">
                                   <path d="M460.116 373.846l-20.823-12.022c-5.541-3.199-7.54-10.159-4.663-15.874 30.137-59.886 28.343-131.652-5.386-189.946-33.641-58.394-94.896-95.833-161.827-99.676C261.028 55.961 256 50.751 256 44.352V20.309c0-6.904 5.808-12.337 12.703-11.982 83.556 4.306 160.163 50.864 202.11 123.677 42.063 72.696 44.079 162.316 6.031 236.832-3.14 6.148-10.75 8.461-16.728 5.01z" />
                                 </svg>

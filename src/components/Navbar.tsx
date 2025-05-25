@@ -3,14 +3,12 @@ import React, { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { Menu, X, PlaySquare } from "lucide-react";
 import { Link } from "react-router-dom";
-import { useToast } from "@/hooks/use-toast";
 import Logo from "./Logo";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('');
-  const { toast } = useToast();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -60,16 +58,6 @@ const Navbar = () => {
     }
   };
 
-  const handleSandboxClick = (e: React.MouseEvent) => {
-    e.preventDefault();
-    toast({
-      title: "Coming Soon",
-      description: "Our sandbox is currently being developed and will be available soon!",
-      duration: 5000
-    });
-    setIsMobileMenuOpen(false);
-  };
-
   const isActive = (section: string) => activeSection === section;
 
   return <header className={`fixed w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm shadow-sm' : ''}`}>
@@ -113,10 +101,10 @@ const Navbar = () => {
               Pricing
             </button>
             <Button asChild variant="outline" size="sm" className="flex items-center bg-sirdash-100 hover:bg-sirdash-200 text-sirdash-700 border-sirdash-300">
-              <a href="#" onClick={handleSandboxClick}>
+              <Link to="/waitlist" onClick={() => setIsMobileMenuOpen(false)}>
                 <PlaySquare className="w-4 h-4 mr-2" />
                 Try Our Sandbox
-              </a>
+              </Link>
             </Button>
           </nav>
           
@@ -170,10 +158,10 @@ const Navbar = () => {
               >
                 Pricing
               </button>
-              <a href="#" onClick={handleSandboxClick} className="flex items-center py-2 text-base font-medium text-sirdash-700 hover:text-sirdash-600 dark:text-sirdash-400 dark:hover:text-sirdash-300">
+              <Link to="/waitlist" onClick={toggleMobileMenu} className="flex items-center py-2 text-base font-medium text-sirdash-700 hover:text-sirdash-600 dark:text-sirdash-400 dark:hover:text-sirdash-300">
                 <PlaySquare className="w-5 h-5 mr-2" />
                 Try Our Sandbox
-              </a>
+              </Link>
             </div>
             <div className="space-y-3">
               <Button asChild className="bg-sirdash-500 hover:bg-sirdash-600 w-full" size="sm">

@@ -2,6 +2,7 @@
 import React, { useEffect } from 'react';
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
+import VideoDemo from '@/components/VideoDemo';
 import About from '@/components/About';
 import Technology from '@/components/Technology';
 import UseCases from '@/components/UseCases';
@@ -26,6 +27,7 @@ const Index = () => {
       <Navbar />
       <main className="flex-grow">
         <Hero />
+        <VideoDemo />
         <div id="about">
           <About />
         </div>

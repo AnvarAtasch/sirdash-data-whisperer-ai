@@ -1,25 +1,21 @@
 import React from 'react';
-import { Database, Server, Shield } from 'lucide-react';
 
 const DataSources = () => {
   const dataSources = [
     {
       name: 'PostgreSQL',
-      icon: Database,
-      description: 'Open-source relational database',
-      color: 'text-blue-600'
+      logo: '/lovable-uploads/2ef2ceb2-3b38-4cf3-98ab-495a3a720944.png',
+      description: 'Open-source relational database'
     },
     {
       name: 'Microsoft SQL Server',
-      icon: Server,
-      description: 'Enterprise database platform',
-      color: 'text-red-600'
+      logo: '/lovable-uploads/347466c5-863c-4cf2-a497-0d0676e90722.png',
+      description: 'Enterprise database platform'
     },
     {
       name: 'Oracle Database',
-      icon: Shield,
-      description: 'Enterprise-grade database system',
-      color: 'text-orange-600'
+      logo: '/lovable-uploads/b9f60c7e-93b1-4af8-be9d-a81f5090188b.png',
+      description: 'Enterprise-grade database system'
     }
   ];
 
@@ -37,15 +33,17 @@ const DataSources = () => {
         
         <div className="max-w-4xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {dataSources.map((source, index) => {
-              const Icon = source.icon;
-              return (
+            {dataSources.map((source, index) => (
                 <div 
                   key={index}
                   className="flex flex-col items-center p-8 bg-background rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300 border border-border"
                 >
-                  <div className="w-16 h-16 rounded-full bg-muted/50 flex items-center justify-center mb-4">
-                    <Icon className={`w-8 h-8 ${source.color}`} />
+                  <div className="w-16 h-16 rounded-full bg-muted/50 flex items-center justify-center mb-4 p-2">
+                    <img 
+                      src={source.logo} 
+                      alt={`${source.name} logo`}
+                      className="w-full h-full object-contain"
+                    />
                   </div>
                   <h3 className="text-lg font-semibold text-foreground mb-2 text-center">
                     {source.name}
@@ -54,8 +52,7 @@ const DataSources = () => {
                     {source.description}
                   </p>
                 </div>
-              );
-            })}
+              ))}
           </div>
           
           <div className="text-center mt-12">

@@ -100,6 +100,12 @@ const Navbar = () => {
             >
               Pricing
             </button>
+            <Link 
+              to="/documentation" 
+              className="text-sm font-medium transition-colors text-gray-700 hover:text-sirdash-600 dark:text-gray-200 dark:hover:text-sirdash-400"
+            >
+              Documentation
+            </Link>
             <Button asChild variant="outline" size="sm" className="flex items-center bg-sirdash-100 hover:bg-sirdash-200 text-sirdash-700 border-sirdash-300">
               <Link to="/waitlist" onClick={() => setIsMobileMenuOpen(false)}>
                 <PlaySquare className="w-4 h-4 mr-2" />
@@ -161,6 +167,13 @@ const Navbar = () => {
               <Link to="/waitlist" onClick={toggleMobileMenu} className="flex items-center py-2 text-base font-medium text-sirdash-700 hover:text-sirdash-600 dark:text-sirdash-400 dark:hover:text-sirdash-300">
                 <PlaySquare className="w-5 h-5 mr-2" />
                 Try Our Sandbox
+              </Link>
+              <Link 
+                to="/documentation" 
+                className="block py-2 text-base font-medium text-gray-700 hover:text-sirdash-600 dark:text-gray-200 dark:hover:text-sirdash-400"
+                onClick={toggleMobileMenu}
+              >
+                Documentation
               </Link>
             </div>
             <div className="space-y-3">

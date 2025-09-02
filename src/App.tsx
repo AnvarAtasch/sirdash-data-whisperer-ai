@@ -12,6 +12,7 @@ import VerifyEmail from "./pages/VerifyEmail";
 import Sandbox from "./pages/Sandbox";
 import Waitlist from "./pages/Waitlist";
 import ComingSoon from "./pages/ComingSoon";
+import Documentation from "./pages/Documentation";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -31,6 +32,7 @@ const App = () => (
             <Route path="/sandbox" element={<Sandbox />} />
             <Route path="/waitlist" element={<Waitlist />} />
             <Route path="/coming-soon" element={<ComingSoon />} />
+            <Route path="/documentation" element={<Documentation />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>

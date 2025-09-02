@@ -1,126 +1,398 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ChevronLeft, Download, FileText, Database, Settings, BarChart3 } from 'lucide-react';
+import { ChevronLeft, FileText, Play, Database, Code, HelpCircle, Book, Keyboard, Globe } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 const Documentation = () => {
+  const [activeSection, setActiveSection] = useState('introduction');
+
   const sections = [
     {
-      id: 'installation',
-      title: 'Installation Guide',
-      icon: Download,
-      content: [
-        {
-          title: 'System Requirements',
-          items: [
-            'Windows 10/11, macOS 10.15+, or Linux',
-            'Minimum 4GB RAM (8GB recommended)',
-            'PostgreSQL, Microsoft SQL Server, or Oracle Database access',
-            'Internet connection for initial setup'
-          ]
-        },
-        {
-          title: 'Download and Install',
-          steps: [
-            'Download SirDash from the official website',
-            'Run the installer with administrator privileges',
-            'Follow the installation wizard prompts',
-            'Launch SirDash after installation completes'
-          ]
-        }
-      ]
-    },
-    {
-      id: 'configuration',
-      title: 'Database Configuration',
-      icon: Database,
-      content: [
-        {
-          title: 'PostgreSQL Setup',
-          steps: [
-            'Open SirDash and navigate to Settings > Data Sources',
-            'Click "Add New Connection"',
-            'Select PostgreSQL from the database type dropdown',
-            'Enter your server details: host, port, database name',
-            'Provide username and password credentials',
-            'Test the connection and save'
-          ]
-        },
-        {
-          title: 'Microsoft SQL Server Setup',
-          steps: [
-            'Navigate to Settings > Data Sources',
-            'Click "Add New Connection"',
-            'Select Microsoft SQL Server',
-            'Enter server instance and database details',
-            'Configure authentication (Windows or SQL Server)',
-            'Test connection and save configuration'
-          ]
-        },
-        {
-          title: 'Oracle Database Setup',
-          steps: [
-            'Go to Settings > Data Sources',
-            'Select "Add New Connection"',
-            'Choose Oracle Database from the list',
-            'Enter TNS name or connection string',
-            'Provide Oracle credentials',
-            'Verify connection and apply settings'
-          ]
-        }
-      ]
-    },
-    {
-      id: 'features',
-      title: 'Key Features',
-      icon: BarChart3,
-      content: [
-        {
-          title: 'Data Visualization',
-          items: [
-            'Interactive charts and graphs',
-            'Real-time data updates',
-            'Customizable dashboard layouts',
-            'Export capabilities (PDF, Excel, CSV)'
-          ]
-        },
-        {
-          title: 'Analytics & Insights',
-          items: [
-            'Automated data analysis',
-            'Pattern recognition',
-            'Predictive analytics',
-            'Custom metrics and KPIs'
-          ]
-        }
-      ]
+      id: 'introduction',
+      title: 'Introduction',
+      icon: FileText,
+      content: (
+        <div className="space-y-4">
+          <p className="text-muted-foreground leading-relaxed">
+            SirDash is a powerful dashboard application that helps you manage and visualize your data efficiently. 
+            This guide will walk you through the installation process, basic usage, and advanced features.
+          </p>
+        </div>
+      )
     },
     {
       id: 'getting-started',
       title: 'Getting Started',
-      icon: Settings,
-      content: [
-        {
-          title: 'First Time Setup',
-          steps: [
-            'Complete the initial configuration wizard',
-            'Add your first data source connection',
-            'Import or sync your initial dataset',
-            'Create your first dashboard',
-            'Explore available visualization options'
-          ]
-        },
-        {
-          title: 'Creating Your First Dashboard',
-          steps: [
-            'Click "New Dashboard" from the main menu',
-            'Select your data source',
-            'Choose visualization types',
-            'Configure chart parameters',
-            'Save and share your dashboard'
-          ]
-        }
-      ]
+      icon: Play,
+      content: (
+        <div className="space-y-8">
+          <div>
+            <h3 className="text-xl font-semibold text-card-foreground mb-4">System Requirements</h3>
+            <p className="text-muted-foreground mb-4">Before installing SirDash, ensure your system meets the following requirements:</p>
+            <ul className="space-y-2 ml-4">
+              {[
+                'Docker and Docker Compose installed',
+                'Minimum 4GB of RAM',
+                '5GB of free disk space',
+                'Internet connection for installation'
+              ].map((item, index) => (
+                <li key={index} className="flex items-start gap-2 text-muted-foreground">
+                  <div className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0" />
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+          
+          <div>
+            <h3 className="text-xl font-semibold text-card-foreground mb-4">Docker Installation (Recommended)</h3>
+            <p className="text-muted-foreground mb-4">SirDash application consists of three components:</p>
+            <ol className="space-y-3 ml-4 mb-6">
+              {[
+                { title: 'Backend', desc: 'Provides the API services and business logic' },
+                { title: 'Backend DB', desc: 'PostgreSQL database for storing application data' },
+                { title: 'Frontend', desc: 'Web interface for user interaction' }
+              ].map((step, index) => (
+                <li key={index} className="flex items-start gap-3 text-muted-foreground">
+                  <div className="w-6 h-6 rounded-full bg-primary text-primary-foreground text-sm font-medium flex items-center justify-center flex-shrink-0 mt-0.5">
+                    {index + 1}
+                  </div>
+                  <div>
+                    <strong className="text-card-foreground">{step.title}</strong>: {step.desc}
+                  </div>
+                </li>
+              ))}
+            </ol>
+
+            <p className="text-muted-foreground mb-4">
+              SirDash can be easily deployed using the following docker-compose file. Save this file as 
+              <code className="bg-muted px-2 py-1 rounded text-sm mx-1">docker-compose.yml</code> 
+              in your project directory:
+            </p>
+
+            <div className="bg-muted rounded-lg p-4 overflow-x-auto mb-6">
+              <pre className="text-sm text-muted-foreground">
+{`services:
+  frontend:
+    image: ghcr.io/sirdash/sirdash-frontend:latest
+    container_name: sirdash-frontend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+    networks:
+      - app-network
+
+  backend:
+    image: ghcr.io/sirdash/sirdash-backend:latest
+    container_name: sirdash-backend
+    ports:
+      - "8000:8000"
+    environment:
+      - DATABASE_URL=postgresql://[USERNAME]:[PASSWORD]@[HOST]:[PORT]/[DATABASE]
+      - ALLOWED_ORIGINS=\${ALLOWED_ORIGINS}
+      - OPENAI_API_KEY=\${OPENAI_API_KEY}
+    depends_on:
+      backend-db:
+          condition: service_healthy
+    networks:
+      - app-network
+
+  backend-db:
+    image: ghcr.io/sirdash/sirdash-backend-db:latest
+    container_name: sirdash-backend-db
+    environment:
+      - POSTGRES_USER=[DB_USER]
+      - POSTGRES_PASSWORD=[DB_PASSWORD]
+      - POSTGRES_DB=[DB_NAME]
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "[DB_USER]", "-p", "5433"]
+      interval: 5s
+      retries: 5
+      start_period: 20s
+    ports:
+      - "5433:5433"
+    command: ["postgres", "-c", "port=5433"]
+    networks:
+      - app-network
+
+volumes:
+  postgres_data:
+
+networks:
+  app-network:
+    driver: bridge`}
+              </pre>
+            </div>
+
+            <p className="text-muted-foreground mb-4">Before starting the application, you need to set the following environment variables:</p>
+            
+            <div className="bg-muted rounded-lg p-4 overflow-x-auto mb-4">
+              <pre className="text-sm text-muted-foreground">
+{`export ALLOWED_ORIGINS="http://localhost:3000,http://<hostname>:3000"
+export OPENAI_API_KEY="[YOUR_API_KEY]"`}
+              </pre>
+            </div>
+
+            <p className="text-muted-foreground mb-4">Where:</p>
+            <ul className="space-y-2 ml-4 mb-6">
+              {[
+                '<hostname> is the name of the host where SirDash will be running',
+                '[YOUR_API_KEY] is your OpenAI API key (keep this secure and never share publicly)'
+              ].map((item, index) => (
+                <li key={index} className="flex items-start gap-2 text-muted-foreground">
+                  <div className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0" />
+                  {item}
+                </li>
+              ))}
+            </ul>
+
+            <p className="text-muted-foreground mb-2">Then start the application using:</p>
+            <div className="bg-muted rounded-lg p-4">
+              <pre className="text-sm text-muted-foreground">docker-compose up</pre>
+            </div>
+          </div>
+        </div>
+      )
+    },
+    {
+      id: 'basic-usage',
+      title: 'Basic Usage',
+      icon: Database,
+      content: (
+        <div className="space-y-8">
+          <div>
+            <h3 className="text-xl font-semibold text-card-foreground mb-4">Logging In</h3>
+            <ol className="space-y-3 ml-4">
+              {[
+                'Open your web browser and navigate to http://localhost:3000',
+                'Enter your username and password',
+                'Click the "Login" button'
+              ].map((step, index) => (
+                <li key={index} className="flex items-start gap-3 text-muted-foreground">
+                  <div className="w-6 h-6 rounded-full bg-primary text-primary-foreground text-sm font-medium flex items-center justify-center flex-shrink-0 mt-0.5">
+                    {index + 1}
+                  </div>
+                  {step}
+                </li>
+              ))}
+            </ol>
+          </div>
+
+          <div>
+            <h3 className="text-xl font-semibold text-card-foreground mb-4">Dashboard Overview</h3>
+            <p className="text-muted-foreground mb-4">After logging in, you'll see the main dashboard with several components:</p>
+            <ul className="space-y-2 ml-4">
+              {[
+                { title: 'Navigation Menu', desc: 'Located on the left side, provides access to all features' },
+                { title: 'Data Visualizations', desc: 'Central area showing charts and data representations' },
+                { title: 'User Settings', desc: 'Accessible from the top-right corner' }
+              ].map((item, index) => (
+                <li key={index} className="flex items-start gap-2 text-muted-foreground">
+                  <div className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0" />
+                  <div>
+                    <strong className="text-card-foreground">{item.title}</strong> - {item.desc}
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div>
+            <h3 className="text-xl font-semibold text-card-foreground mb-4">Running Queries</h3>
+            <p className="text-muted-foreground mb-4">SirDash allows you to run SQL queries against your data:</p>
+            <ol className="space-y-3 ml-4">
+              {[
+                'Navigate to the "Queries" section',
+                'Enter your SQL query in the editor',
+                'Click "Run" to execute',
+                'View results in the data table below'
+              ].map((step, index) => (
+                <li key={index} className="flex items-start gap-3 text-muted-foreground">
+                  <div className="w-6 h-6 rounded-full bg-primary text-primary-foreground text-sm font-medium flex items-center justify-center flex-shrink-0 mt-0.5">
+                    {index + 1}
+                  </div>
+                  {step}
+                </li>
+              ))}
+            </ol>
+          </div>
+        </div>
+      )
+    },
+    {
+      id: 'advanced-features',
+      title: 'Advanced Features',
+      icon: Code,
+      content: (
+        <div className="space-y-8">
+          <div>
+            <h3 className="text-xl font-semibold text-card-foreground mb-4">Creating Custom Dashboards</h3>
+            <p className="text-muted-foreground mb-4">SirDash allows you to create personalized dashboards:</p>
+            <ol className="space-y-3 ml-4">
+              {[
+                'Go to "Dashboard Settings"',
+                'Click "Create New Dashboard"',
+                'Add widgets by dragging and dropping from the widget library',
+                'Save your custom dashboard configuration'
+              ].map((step, index) => (
+                <li key={index} className="flex items-start gap-3 text-muted-foreground">
+                  <div className="w-6 h-6 rounded-full bg-primary text-primary-foreground text-sm font-medium flex items-center justify-center flex-shrink-0 mt-0.5">
+                    {index + 1}
+                  </div>
+                  {step}
+                </li>
+              ))}
+            </ol>
+          </div>
+
+          <div>
+            <h3 className="text-xl font-semibold text-card-foreground mb-4">Data Export</h3>
+            <p className="text-muted-foreground mb-4">Export your data in various formats:</p>
+            <ul className="space-y-2 ml-4">
+              {[
+                { format: 'CSV', desc: 'For spreadsheet applications' },
+                { format: 'JSON', desc: 'For programmatic access' },
+                { format: 'PDF', desc: 'For printable reports' }
+              ].map((item, index) => (
+                <li key={index} className="flex items-start gap-2 text-muted-foreground">
+                  <div className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0" />
+                  <div>
+                    <strong className="text-card-foreground">{item.format}</strong> - {item.desc}
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      )
+    },
+    {
+      id: 'troubleshooting',
+      title: 'Troubleshooting',
+      icon: HelpCircle,
+      content: (
+        <div className="space-y-8">
+          <div>
+            <h3 className="text-xl font-semibold text-card-foreground mb-4">Application Won't Start</h3>
+            <p className="text-muted-foreground mb-4">Check the following:</p>
+            <ul className="space-y-2 ml-4">
+              {[
+                'Docker service is running',
+                'Ports 3000 and 8000 are not in use by other applications',
+                'Docker has sufficient permissions'
+              ].map((item, index) => (
+                <li key={index} className="flex items-start gap-2 text-muted-foreground">
+                  <div className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0" />
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div>
+            <h3 className="text-xl font-semibold text-card-foreground mb-4">Database Connection Errors</h3>
+            <p className="text-muted-foreground mb-4">Verify:</p>
+            <ul className="space-y-2 ml-4">
+              {[
+                'Database credentials in configuration files',
+                'Database service is running',
+                'Network connectivity between application and database'
+              ].map((item, index) => (
+                <li key={index} className="flex items-start gap-2 text-muted-foreground">
+                  <div className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0" />
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      )
+    },
+    {
+      id: 'faq',
+      title: 'FAQ',
+      icon: Book,
+      content: (
+        <div className="space-y-6">
+          {[
+            {
+              question: 'What browsers are supported?',
+              answer: 'Chrome, Firefox, Safari, and Edge are fully supported.'
+            },
+            {
+              question: 'How do I reset my password?',
+              answer: 'Click the "Forgot Password" link on the login page and follow the instructions.'
+            },
+            {
+              question: 'Can I use SirDash on mobile devices?',
+              answer: 'Yes, SirDash is responsive and works on tablets and smartphones.'
+            }
+          ].map((faq, index) => (
+            <div key={index} className="border-l-4 border-primary pl-4">
+              <h4 className="text-lg font-semibold text-card-foreground mb-2">{faq.question}</h4>
+              <p className="text-muted-foreground">{faq.answer}</p>
+            </div>
+          ))}
+        </div>
+      )
+    },
+    {
+      id: 'support',
+      title: 'Support and Community',
+      icon: Globe,
+      content: (
+        <div className="space-y-4">
+          <ul className="space-y-3 ml-4">
+            {[
+              { title: 'Documentation', url: 'https://docs.sirdash.example.com' },
+              { title: 'GitHub Issues', url: 'https://github.com/[ORGANIZATION]/sirdash/issues' },
+              { title: 'Community Forum', url: 'https://community.sirdash.example.com' }
+            ].map((link, index) => (
+              <li key={index} className="flex items-start gap-2 text-muted-foreground">
+                <div className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0" />
+                <div>
+                  <strong className="text-card-foreground">{link.title}</strong>: {link.url}
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )
+    },
+    {
+      id: 'keyboard-shortcuts',
+      title: 'Keyboard Shortcuts',
+      icon: Keyboard,
+      content: (
+        <div className="overflow-x-auto">
+          <table className="w-full border-collapse">
+            <thead>
+              <tr className="border-b border-border">
+                <th className="text-left p-3 text-card-foreground font-semibold">Shortcut</th>
+                <th className="text-left p-3 text-card-foreground font-semibold">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              {[
+                { shortcut: 'Ctrl+S', action: 'Save current view' },
+                { shortcut: 'Ctrl+N', action: 'Create new dashboard' },
+                { shortcut: 'Ctrl+F', action: 'Search data' },
+                { shortcut: 'Esc', action: 'Close current dialog' }
+              ].map((row, index) => (
+                <tr key={index} className="border-b border-border/50">
+                  <td className="p-3">
+                    <code className="bg-muted px-2 py-1 rounded text-sm">{row.shortcut}</code>
+                  </td>
+                  <td className="p-3 text-muted-foreground">{row.action}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )
     }
   ];
 
@@ -176,37 +448,7 @@ const Documentation = () => {
                 </div>
 
                 <div className="space-y-6">
-                  {section.content.map((item, itemIndex) => (
-                    <div key={itemIndex} className="space-y-3">
-                      <h3 className="text-lg font-semibold text-card-foreground">
-                        {item.title}
-                      </h3>
-                      
-                      {item.items && (
-                        <ul className="space-y-2 ml-4">
-                          {item.items.map((listItem, listIndex) => (
-                            <li key={listIndex} className="flex items-start gap-2 text-muted-foreground">
-                              <div className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0" />
-                              {listItem}
-                            </li>
-                          ))}
-                        </ul>
-                      )}
-
-                      {item.steps && (
-                        <ol className="space-y-3 ml-4">
-                          {item.steps.map((step, stepIndex) => (
-                            <li key={stepIndex} className="flex items-start gap-3 text-muted-foreground">
-                              <div className="w-6 h-6 rounded-full bg-primary text-primary-foreground text-sm font-medium flex items-center justify-center flex-shrink-0 mt-0.5">
-                                {stepIndex + 1}
-                              </div>
-                              {step}
-                            </li>
-                          ))}
-                        </ol>
-                      )}
-                    </div>
-                  ))}
+                  {section.content}
                 </div>
               </section>
             );

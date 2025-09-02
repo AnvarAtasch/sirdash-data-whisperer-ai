@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { Linkedin, Twitter, Mail } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import Logo from './Logo';
 import { Button } from './ui/button';
 
@@ -117,9 +118,9 @@ const Footer = () => {
                   </button>
                 </li>
                 <li>
-                  <a href="#" className="text-sm text-gray-600 hover:text-sirdash-500 dark:text-gray-400 dark:hover:text-sirdash-400">
+                  <Link to="/documentation" className="text-sm text-gray-600 hover:text-sirdash-500 dark:text-gray-400 dark:hover:text-sirdash-400">
                     Documentation
-                  </a>
+                  </Link>
                 </li>
                 <li>
                   <button
